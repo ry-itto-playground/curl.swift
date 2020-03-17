@@ -1,6 +1,6 @@
 import ArgumentParser
 
-enum HTTPMethod: ExpressibleByArgument {
+enum HTTPMethod: String, ExpressibleByArgument {
     case get
     case post
     case put

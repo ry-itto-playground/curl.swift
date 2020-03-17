@@ -14,7 +14,7 @@ struct CurlCommand: ParsableCommand {
         name: .customShort(Character("X")),
         default: .get,
         help: "HTTP method")
-    var method: HTTPMethod?
+    var method: HTTPMethod
 
     func validate() throws {
     }
