@@ -1,4 +1,5 @@
 import Foundation
+import PathKit
 
 extension CurlCommand {
     func run() throws {
@@ -13,8 +14,15 @@ extension CurlCommand {
         }()
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            let responseString = String(data: data!, encoding: .utf8)
-            print(responseString!)
+            guard let responseString = String(data: data!, encoding: .utf8) else {
+                return
+            }
+            if let output = self.output {
+                let path = Path.current + Path(output)
+                try? path.write(responseString)
+            } else {
+                print(responseString)
+            }
             semaphore.signal()
         }.resume()
 

@@ -16,6 +16,12 @@ struct CurlCommand: ParsableCommand {
         help: "HTTP method")
     var method: HTTPMethod
 
+    @Option(
+        name: .shortAndLong,
+        default: nil,
+        help: "Output file path")
+    var output: String?
+
     func validate() throws {
     }
 }
