@@ -22,6 +22,12 @@ struct CurlCommand: ParsableCommand {
         help: "Output file path")
     var output: String?
 
+    @Option(
+        name: .shortAndLong,
+        default: nil,
+        help: "HTTP POST data")
+    var data: String?
+
     func validate() throws {
         guard url.isURL else {
             throw ValidationError("Please input valid url")

@@ -10,6 +10,9 @@ extension CurlCommand {
         let request: URLRequest = {
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
+            if let data = data {
+                request.httpBody = data.data(using: .utf8)
+            }
             return request
         }()
 
