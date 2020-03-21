@@ -28,6 +28,12 @@ struct CurlCommand: ParsableCommand {
         help: "HTTP POST data")
     var data: String?
 
+    @Option(
+        name: .shortAndLong,
+        default: false,
+        help: "Include protocol response headers in the output")
+    var include: Bool
+
     func validate() throws {
         guard url.isURL else {
             throw ValidationError("Please input valid url")

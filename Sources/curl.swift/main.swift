@@ -20,11 +20,17 @@ extension CurlCommand {
             guard let responseString = String(data: data!, encoding: .utf8) else {
                 return
             }
+            var outputString = ""
+
+            if let response = response as? HTTPURLResponse {
+                outputString += PrettyPrinter.printString(response.allHeaderFields) 
+            }
+            outputString += "\n" + responseString
             if let output = self.output {
                 let path = Path.current + Path(output)
-                try? path.write(responseString)
+                try? path.write(outputString)
             } else {
-                print(responseString)
+                print(outputString)
             }
             semaphore.signal()
         }.resume()
