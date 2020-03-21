@@ -23,5 +23,8 @@ struct CurlCommand: ParsableCommand {
     var output: String?
 
     func validate() throws {
+        guard url.isURL else {
+            throw ValidationError("Please input valid url")
+        }
     }
 }
